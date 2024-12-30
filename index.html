@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .warning-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            background: rgba(18, 18, 18, 0.3);
+            transition: opacity 0.3s ease-out;
+        }
+
+        .warning-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .warning-tape {
+            position: fixed;
+            inset: -100px;
+            z-index: 11;
+            background-image: repeating-linear-gradient(
+                45deg,
+                #ffd700 0,
+                #ffd700 30px,
+                #000 30px,
+                #000 60px
+            );
+            background-size: 84.85px 84.85px;
+        }
+
+        .warning-tape:nth-child(2) {
+            background-image: repeating-linear-gradient(
+                -45deg,
+                #ffd700 0,
+                #ffd700 30px,
+                #000 30px,
+                #000 60px
+            );
+        }
+
+        .warning-content {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #121212;
+            color: #eaeaea;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            position: relative;
+            z-index: 12;
+            border: 2px solid #eaeaea;
+            max-width: 400px;
+            margin: 20px;
+        }
+
+        .warning-button {
+            font-family: inherit;
+            background: #121212;
+            color: #eaeaea;
+            border: 1px solid #eaeaea;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .warning-button:hover {
+            background: #eaeaea;
+            color: #121212;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(234, 234, 234, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .warning-tape {
+                position: absolute;
+                height: calc(100% + 200px);
+            }
+            .warning-content {
+                margin: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Example usage -->
+    <div class="warning-overlay" id="warningOverlay">
+        <div class="warning-tape"></div>
+        <div class="warning-tape"></div>
+        <div class="warning-content">
+            <h2>Your Title Here</h2>
+            <p>Your message here</p>
+            <button class="warning-button" onclick="document.getElementById('warningOverlay').classList.add('hidden')">
+                Close
+            </button>
+        </div>
+    </div> 
+</body>
+</html>
